@@ -9,6 +9,7 @@ import Register from "./../pages/Register/Register";
 import Blogs from "./../pages/Blogs/Blogs";
 import ToyDetails from "./../pages/ToyDetails/ToyDetails";
 import Error from "./../pages/Error/Error";
+import RouteProtector from "./RouteProtector";
 
 const routers = createBrowserRouter([
   {
@@ -20,20 +21,32 @@ const routers = createBrowserRouter([
         element: <Home></Home>,
       },
       {
-        path: "/my-toys",
-        element: <MyToys></MyToys>,
+        path: "/blogs",
+        element: <Blogs></Blogs>,
       },
       {
         path: "/all-toys",
         element: <AllToys></AllToys>,
       },
       {
-        path: "/add-toy",
-        element: <AddToy></AddToy>,
-      },
-      {
         path: "/toy-details/:id",
         element: <ToyDetails></ToyDetails>,
+      },
+      {
+        path: "/my-toys",
+        element: (
+          <RouteProtector>
+            <MyToys></MyToys>
+          </RouteProtector>
+        ),
+      },
+      {
+        path: "/add-toy",
+        element: (
+          <RouteProtector>
+            <AddToy></AddToy>
+          </RouteProtector>
+        ),
       },
       {
         path: "/login",
@@ -42,10 +55,6 @@ const routers = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
-      },
-      {
-        path: "/blogs",
-        element: <Blogs></Blogs>,
       },
     ],
   },

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogin from "../../components/SocialLogin";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvides";
@@ -6,6 +6,11 @@ import Swal from "sweetalert2";
 
 const Login = () => {
   const { loginUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  /* ---------- location ------------------ */
+  const location = useLocation();
+  const redirectFrom = location?.state?.from?.pathname || "/";
 
   /* -----------------------------------------------------
   !--------------------| handler for login | --------------
@@ -26,6 +31,7 @@ const Login = () => {
           text: `Welcome Back ${authResult.user.displayName}`,
         });
         form.reset();
+        navigate(redirectFrom, { replace: true });
       })
       .catch((error) => {
         Swal.fire({

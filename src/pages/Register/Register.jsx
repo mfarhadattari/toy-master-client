@@ -11,7 +11,7 @@ const Register = () => {
   const navigate = useNavigate();
 
   /* --------------------------------------------------
-  !--------------- | handler for register |------
+  !--------------- | handler for register |----------
   ----------------------------------------------- */
   const handleRegister = (event) => {
     event.preventDefault();

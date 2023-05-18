@@ -5,7 +5,7 @@ const NavigationLink = ({ to, children }) => {
     <div className="font-bold text-xl">
       <NavLink
         to={to}
-        className={({ isActive }) => (isActive ? "underline underline-offset-4" : "")}
+        className={({ isActive }) => (isActive ? "underline underline-offset-8" : "")}
       >
         {children}
       </NavLink>
