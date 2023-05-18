@@ -4,7 +4,7 @@ import icon from "/icon.png";
 import Avatar from "../../../components/Avatar";
 
 const NavigationBar = () => {
-  const user = true;
+  const user = false;
   const navList = (
     <>
       <NavigationLink to="/">Home</NavigationLink>
@@ -22,7 +22,7 @@ const NavigationBar = () => {
     </>
   );
   return (
-    <nav className="navbar justify-between w-full m-0 p-7 md:px-20  bg-pink-600 text-white sticky top-0">
+    <nav className="navbar justify-between w-full m-0 p-7 md:px-20  bg-pink-600 text-white sticky top-0 z-50">
       <div className="navbar-start w-fit">
         <div className="dropdown ">
           <label tabIndex={0} className="btn btn-ghost lg:hidden mr-5">
