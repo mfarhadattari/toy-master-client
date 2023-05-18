@@ -2,9 +2,11 @@ import { Link } from "react-router-dom";
 import NavigationLink from "../../../components/NavigationLink";
 import icon from "/icon.png";
 import Avatar from "../../../components/Avatar";
+import { useContext } from "react";
+import { AuthContext } from "../../../providers/AuthProvides";
 
 const NavigationBar = () => {
-  const user = false;
+  const { user } = useContext(AuthContext);
   const navList = (
     <>
       <NavigationLink to="/">Home</NavigationLink>
