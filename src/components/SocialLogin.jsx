@@ -19,12 +19,23 @@ const SocialLogin = () => {
   const handelGoogleLogin = () => {
     loginUserWithGoogle()
       .then((loginResult) => {
-        Swal.fire({
-          title: "Login Successfully!",
-          text: `Welcome Back ${loginResult.user.displayName}`,
-          icon: "success",
-        });
-        navigate(redirectFrom, { replace: true });
+        fetch("http://localhost:5000/generate-jwt-token", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ email: loginResult.user.email }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            localStorage.setItem("toy-master-token", data.token);
+            Swal.fire({
+              title: "Login Success",
+              icon: "success",
+              text: `Welcome Back ${loginResult.user.displayName}`,
+            });
+            navigate(redirectFrom, { replace: true });
+          });
       })
       .catch((error) => {
         Swal.fire({

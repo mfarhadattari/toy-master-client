@@ -19,6 +19,7 @@ const Avatar = () => {
       if (warningResult.isConfirmed) {
         logoutUser()
           .then(() => {
+            localStorage.removeItem("toy-master-token");
             Swal.fire({
               title: "Logout Successfully",
               icon: "success",

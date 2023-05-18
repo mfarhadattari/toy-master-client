@@ -1,4 +1,4 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, json, useLocation, useNavigate } from "react-router-dom";
 import SocialLogin from "../../components/SocialLogin";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvides";
@@ -25,13 +25,24 @@ const Login = () => {
 
     loginUser(email, password)
       .then((authResult) => {
-        Swal.fire({
-          title: "Login Success",
-          icon: "success",
-          text: `Welcome Back ${authResult.user.displayName}`,
-        });
-        form.reset();
-        navigate(redirectFrom, { replace: true });
+        fetch("http://localhost:5000/generate-jwt-token", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ email: authResult.user.email }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            localStorage.setItem("toy-master-token", data.token);
+            Swal.fire({
+              title: "Login Success",
+              icon: "success",
+              text: `Welcome Back ${authResult.user.displayName}`,
+            });
+            form.reset();
+            navigate(redirectFrom, { replace: true });
+          });
       })
       .catch((error) => {
         Swal.fire({
