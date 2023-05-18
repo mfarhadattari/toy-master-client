@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvides";
+import Swal from "sweetalert2";
 
 const kitCategories = [
   "Chemistry Kits",
@@ -33,7 +34,7 @@ const AddToy = () => {
     const img = form.img.value;
     const details = form.details.value;
 
-    const toyInfo = {
+    const toyData = {
       seller,
       email,
       name,
@@ -44,7 +45,24 @@ const AddToy = () => {
       img,
       details,
     };
-    console.log(toyInfo);
+    fetch("http://localhost:5000/add-toy", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(toyData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Toy Added Successfully",
+            icon: "success",
+          });
+          form.reset();
+        }
+      })
+      .catch((error) => console.error(error));
   };
 
   return (
@@ -91,7 +109,7 @@ const AddToy = () => {
               />
             </div>
             <div className="form-control my-2 w-full">
-              <select className="input input-bordered" name="category">
+              <select className="input input-bordered" name="category" required>
                 {kitCategories.map((category, idx) => (
                   <option key={idx}>{category}</option>
                 ))}
@@ -152,6 +170,7 @@ const AddToy = () => {
               placeholder="Description"
               className="textarea textarea-bordered w-full"
               name="details"
+              required
             ></textarea>
           </div>
           <div className="form-control mt-6">
