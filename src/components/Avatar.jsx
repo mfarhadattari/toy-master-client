@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import { FaUser } from "react-icons/fa";
 import { AuthContext } from "../providers/AuthProvides";
 import Swal from "sweetalert2";
 const Avatar = () => {
@@ -28,7 +27,7 @@ const Avatar = () => {
           .catch((error) => {
             Swal.fire({
               title: "Request Error",
-              text: `${error.message}`,
+              text: `${error.message.split("(auth/")[1].slice(0, -2)}`,
               icon: "error",
             });
           });
@@ -54,9 +53,10 @@ const Avatar = () => {
             {user?.photoURL ? (
               <img src={user.photoURL} alt="" />
             ) : (
-              <div className="w-full h-full flex justify-center items-center">
-                <FaUser className="text-4xl"></FaUser>
-              </div>
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/821/821861.png?w=740&t=st=1684402372~exp=1684402972~hmac=e8abbf0d11a37402eda27d2fc910f3c377bd1bd2c0ae6fbebaaa730f3e0703f8"
+                alt=""
+              />
             )}
           </div>
         </div>

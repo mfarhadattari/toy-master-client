@@ -1,20 +1,55 @@
 import { Link } from "react-router-dom";
 import SocialLogin from "../../components/SocialLogin";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvides";
+import Swal from "sweetalert2";
 
 const Login = () => {
+  const { loginUser } = useContext(AuthContext);
+
+  /* -----------------------------------------------------
+  !--------------------| handler for login | --------------
+  ------------------------------------------------------------ */
+  const handelLogin = (event) => {
+    event.preventDefault();
+
+    // form data
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    loginUser(email, password)
+      .then((authResult) => {
+        Swal.fire({
+          title: "Login Success",
+          icon: "success",
+          text: `Welcome Back ${authResult.user.displayName}`,
+        });
+        form.reset();
+      })
+      .catch((error) => {
+        Swal.fire({
+          title: "Error",
+          icon: "error",
+          text: `${error.message.split("(auth/")[1].slice(0, -2)}`,
+        });
+      });
+  };
+
   return (
     <section className="container mx-auto my-10 p-5 lg:p-0">
       <div className="border-2 border-pink-600 rounded-xl shadow-xl w-full md:w-3/4 xl:w-2/5 mx-auto">
         <h1 className="text-center mt-10 font-bold text-4xl font-style-script">
           Please Login
         </h1>
-        <form className="card-body">
+        <form className="card-body" onSubmit={handelLogin}>
           <div className="form-control my-2">
             <input
               type="email"
               name="email"
               placeholder="Your Email"
               className="input input-bordered"
+              required
             />
           </div>
           <div className="form-control my-2">
@@ -23,6 +58,7 @@ const Login = () => {
               name="password"
               placeholder="Your Password"
               className="input input-bordered"
+              required
             />
           </div>
           <div className="form-control mt-6">

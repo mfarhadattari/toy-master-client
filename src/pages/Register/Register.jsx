@@ -1,20 +1,66 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SocialLogin from "../../components/SocialLogin";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvides";
+import Swal from "sweetalert2";
 
 const Register = () => {
+  const { createUser, logoutUser, setUserAvatar, setUserName } =
+    useContext(AuthContext);
+
+  const navigate = useNavigate();
+
+  /* --------------------------------------------------
+  !--------------- | handler for register |------
+  ----------------------------------------------- */
+  const handleRegister = (event) => {
+    event.preventDefault();
+    /* ----------- getting form data -------- */
+    const form = event.target;
+    const name = form.name.value;
+    const avatar = form.avatar.value;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    createUser(email, password)
+      .then((authResult) => {
+        if (name) {
+          setUserName(name);
+        }
+        if (avatar) {
+          setUserAvatar(avatar);
+        }
+        Swal.fire({
+          title: "Successfully Account Created",
+          icon: "success",
+          text: "Now Please Login Your Account",
+        });
+        form.reset();
+        logoutUser();
+        navigate("/login");
+      })
+      .catch((error) => {
+        Swal.fire({
+          title: "Error",
+          icon: "error",
+          text: `${error.message.split("(auth/")[1].slice(0, -2)}`,
+        });
+      });
+  };
   return (
     <section className="container mx-auto my-10 p-5 lg:p-0">
       <div className="border-2 border-pink-600 rounded-xl shadow-xl w-full md:w-3/4 xl:w-2/5 mx-auto">
         <h1 className="text-center mt-10 font-bold text-4xl font-style-script">
           Create Account
         </h1>
-        <form className="card-body">
+        <form className="card-body" onSubmit={handleRegister}>
           <div className="form-control my-2">
             <input
               type="text"
               placeholder="Your Name"
               name="name"
               className="input input-bordered"
+              required
             />
           </div>
           <div className="form-control my-2">
@@ -31,6 +77,7 @@ const Register = () => {
               name="email"
               placeholder="Your Email"
               className="input input-bordered"
+              required
             />
           </div>
           <div className="form-control my-2">
@@ -39,6 +86,7 @@ const Register = () => {
               name="password"
               placeholder="Your Password"
               className="input input-bordered"
+              required
             />
           </div>
           <div className="form-control mt-6">
