@@ -1,21 +1,6 @@
 import React from "react";
 import Modal from "react-modal";
 
-const kitCategories = [
-  "Chemistry Kits",
-  "Physics Kits",
-  "Biology Kits",
-  "Astronomy Kits",
-  "Robotics Kits",
-  "Engineering Kits",
-  "Geology Kits",
-  "Microscope Kits",
-  "Electronics Kits",
-  "Coding Kits",
-  "Mathematics Kits",
-  "Environmental Science Kits",
-  "Geographical Kits",
-];
 const styles = {
   content: {
     height: "70%",
@@ -34,15 +19,14 @@ const UpdateModal = ({ isModalOpen, closeModal, selectedToy, updateToy }) => {
     const price = form.price.value;
     const quantity = form.quantity.value;
     const rating = form.rating.value;
-    const description = form.details.value;
+    const details = form.details.value;
     const data = {
-      _id: selectedToy._id,
       price,
       quantity,
       rating,
-      description,
+      details,
     };
-    updateToy(data);
+    updateToy(selectedToy._id, data);
   };
 
   return (

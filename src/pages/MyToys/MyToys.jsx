@@ -27,7 +27,7 @@ const MyToys = () => {
         ! --------------------- | LOAD MY TOYS | ----------------------
     --------------------------------------------------------------------- */
   useEffect(() => {
-    fetch(`http://localhost:5000/my-toys?email=${user.email}`, {
+    fetch(`https://mfarhad-toy-master.vercel.app/my-toys?email=${user.email}`, {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("toy-master-token")}`,
@@ -65,7 +65,7 @@ const MyToys = () => {
       cancelButtonText: "NO",
     }).then((swalResult) => {
       if (swalResult.isConfirmed) {
-        fetch(`http://localhost:5000/remove-toy/${id}`, {
+        fetch(`https://mfarhad-toy-master.vercel.app/remove-toy/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -94,9 +94,32 @@ const MyToys = () => {
     !----------------------- | UPDATE A TOY | -------------------------------
   ----------------------------------------------------------------------------- */
 
-  const updateToy = (updatedInfo) => {
-    console.log(updatedInfo)
-    
+  const updateToy = (id, updatedInfo) => {
+    fetch(`https://mfarhad-toy-master.vercel.app/update-toy/${id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(updatedInfo),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount > 0) {
+          Swal.fire({
+            title: "Success!",
+            icon: "success",
+            text: "Updated Successfully",
+          }).then((result) => {
+            setIsModalOpen(false);
+          });
+        } else {
+          Swal.fire({
+            title: "Error!",
+            icon: "error",
+            text: "Cannot Updated",
+          });
+        }
+      });
   };
 
   return (
