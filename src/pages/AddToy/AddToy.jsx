@@ -46,7 +46,7 @@ const AddToy = () => {
       img,
       details,
     };
-    fetch("https://mfarhad-toy-master.vercel.app/add-toy", {
+    fetch("http://localhost:5000/add-toy", {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -55,7 +55,7 @@ const Avatar = () => {
               <img src={user.photoURL} alt="" />
             ) : (
               <img
-                src="https://cdn-icons-png.flaticon.com/512/821/821861.png?w=740&t=st=1684402372~exp=1684402972~hmac=e8abbf0d11a37402eda27d2fc910f3c377bd1bd2c0ae6fbebaaa730f3e0703f8"
+                src="https://cdn-icons-png.flaticon.com/128/3177/3177440.png"
                 alt=""
               />
             )}

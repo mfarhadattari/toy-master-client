@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "./../../providers/AuthProvides";
 import Loader from "./../../components/Loader";
+import Swal from "sweetalert2";
 
 const MyToys = () => {
   const { user } = useContext(AuthContext);
@@ -11,7 +12,7 @@ const MyToys = () => {
         ! --------------------- load my toys ----------------------
     --------------------------------------------------------------------- */
   useEffect(() => {
-    fetch(`https://mfarhad-toy-master.vercel.app/my-toys?email=${user.email}`, {
+    fetch(`http://localhost:5000/my-toys?email=${user.email}`, {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("toy-master-token")}`,
@@ -19,7 +20,17 @@ const MyToys = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        setMyToys(data);
+        if (data.error) {
+          Swal.fire({
+            title: "Error!",
+            icon: "error",
+            color: "red",
+            text: `${data.message}`,
+          });
+          setMyToys([]);
+        } else {
+          setMyToys(data);
+        }
         setLoading(false);
       });
   }, [user.email]);
