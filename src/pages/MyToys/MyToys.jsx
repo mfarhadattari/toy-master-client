@@ -105,6 +105,11 @@ const MyToys = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {
+          const updatedToy = myToys.find((toy) => toy._id === id);
+          updatedToy.price = updatedInfo.price;
+          updatedToy.quantity = updatedInfo.quantity;
+          updatedToy.rating = updatedInfo.rating;
+          updatedToy.details = updatedInfo.details;
           Swal.fire({
             title: "Success!",
             icon: "success",
@@ -123,18 +128,21 @@ const MyToys = () => {
   };
 
   return (
-    <section className="container mx-auto">
+    <section className="container mx-auto p-5">
       {loading ? (
         <Loader></Loader>
       ) : (
-        <div className="w-3/4 mx-auto text-center text-lg my-10 space-y-5 border rounded-lg py-5">
+        <div className="lg:w-3/4 mx-auto text-center text-lg my-10 space-y-5 border rounded-lg py-5">
           {/* -------------------- | USER INFORMATION | --------------------- */}
-          <div className="flex justify-end mr-10">
+          <div className="flex justify-center md:justify-end mr-10">
             <div className="flex items-center gap-5">
               <div className="avatar">
                 <div className=" w-14 h-14 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                   <img
-                    src={user.photoURL}
+                    src={
+                      user.photoURL ||
+                      `https://cdn-icons-png.flaticon.com/128/3177/3177440.png`
+                    }
                     alt="Avatar Tailwind CSS Component"
                   />
                 </div>
@@ -149,7 +157,7 @@ const MyToys = () => {
           </div>
 
           {/* --------------------------- | MY TOY INFORMATION |------------------- */}
-          <div>
+          <div className="w-full">
             <div className="divider w-3/4 mx-auto my-10"></div>
             {myToys.length === 0 ? (
               <div className="my-10 text-3xl font-style-script">
@@ -157,9 +165,9 @@ const MyToys = () => {
               </div>
             ) : (
               <>
-                <div className="overflow-x-auto w-full">
-                  <table className="table w-full">
-                    <tbody>
+                <div className="w-full">
+                  <div className="w-full p-5">
+                    <div className="space-y-5">
                       {myToys.map((toy) => (
                         <ToyItems
                           key={toy._id}
@@ -168,8 +176,8 @@ const MyToys = () => {
                           openModal={openModal}
                         ></ToyItems>
                       ))}
-                    </tbody>
-                  </table>
+                    </div>
+                  </div>
                 </div>
               </>
             )}

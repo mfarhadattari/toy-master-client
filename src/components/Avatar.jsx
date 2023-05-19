@@ -51,14 +51,12 @@ const Avatar = () => {
       >
         <div className="avatar">
           <div className="w-14 h-14 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 ">
-            {user?.photoURL ? (
-              <img src={user.photoURL} alt="" />
-            ) : (
-              <img
-                src="https://cdn-icons-png.flaticon.com/128/3177/3177440.png"
-                alt=""
-              />
-            )}
+            <img
+              src={
+                user.photoURL ||
+                `https://cdn-icons-png.flaticon.com/128/3177/3177440.png`
+              }
+            />
           </div>
         </div>
       </div>

@@ -9,6 +9,7 @@ const styles = {
     border: "5px solid #DB2777",
     borderRadius: "10px",
     scrollbarColor: "pink",
+    padding: "0px",
   },
 };
 
@@ -37,7 +38,7 @@ const UpdateModal = ({ isModalOpen, closeModal, selectedToy, updateToy }) => {
       style={styles}
     >
       {selectedToy && (
-        <div className="w-full  mx-auto">
+        <div className="w-full mx-auto">
           <h1 className="text-center mt-10 font-bold text-4xl font-style-script">
             Update Toy
           </h1>

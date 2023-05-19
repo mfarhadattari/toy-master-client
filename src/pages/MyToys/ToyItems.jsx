@@ -21,15 +21,15 @@ const ToyItems = ({ toyInfo, handelRemoveToy, openModal }) => {
     });
   };
   return (
-    <tr className="flex justify-between">
+    <div className="w-full border-2 border-pink-600 rounded-lg p-5 flex flex-col md:flex-row gap-5">
       {/* ----------------------- IMAGE AND INFORMATION ---------------- */}
-      <td className="w-full flex gap-5 items-center ">
+      <div className="w-full flex flex-col md:flex-row gap-5 items-center">
         <div className="avatar">
           <div className=" w-40 h-40 rounded-md">
             <img src={img} alt="Avatar Tailwind CSS Component" />
           </div>
         </div>
-        <div>
+        <div className="text-start">
           <h1 className="font-bold text-xl">{name}</h1>
           <p className="font-semibold">Category: {category}</p>
           <div>
@@ -43,10 +43,10 @@ const ToyItems = ({ toyInfo, handelRemoveToy, openModal }) => {
             </div>
           </div>
         </div>
-      </td>
+      </div>
 
       {/* ------------------- | Action Button Here | -------------------- */}
-      <td className="w-fit gap-5 flex flex-col">
+      <div className="w-fit mx-auto gap-5 flex md:flex-col">
         <button
           className="btn text-red-600 btn-outline btn-circle text-xl hover:border-0 hover:bg-red-600 "
           onClick={() => handelRemoveToy(_id)}
@@ -54,7 +54,7 @@ const ToyItems = ({ toyInfo, handelRemoveToy, openModal }) => {
           <FaTrashAlt></FaTrashAlt>
         </button>
         <button
-          className="btn  text-green-600 btn-outline btn-circle text-xl hover:border-0 hover:bg-green-600"
+          className="btn text-green-600 btn-outline btn-circle text-xl hover:border-0 hover:bg-green-600"
           onClick={() => handelEditBtn(toyInfo)}
         >
           <FaRegEdit></FaRegEdit>
@@ -62,8 +62,8 @@ const ToyItems = ({ toyInfo, handelRemoveToy, openModal }) => {
         <button className="btn text-pink-600 btn-outline btn-circle text-xl hover:border-0 hover:bg-pink-600">
           <FaInfoCircle></FaInfoCircle>
         </button>
-      </td>
-    </tr>
+      </div>
+    </div>
   );
 };
 
