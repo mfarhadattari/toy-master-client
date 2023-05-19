@@ -4,11 +4,24 @@ import Loader from "./../../components/Loader";
 import Swal from "sweetalert2";
 import ToyItems from "./toyItems";
 import { FaEnvelope } from "react-icons/fa";
+import UpdateModal from "../../components/UpdateModal";
 
 const MyToys = () => {
   const { user } = useContext(AuthContext);
   const [myToys, setMyToys] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedToy, setSelectedToy] = useState(null);
+
+  const openModal = (toy) => {
+    setSelectedToy(toy);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setSelectedToy(null);
+    setIsModalOpen(false);
+  };
 
   /* ------------------------------------------------------------------
         ! --------------------- | LOAD MY TOYS | ----------------------
@@ -77,6 +90,15 @@ const MyToys = () => {
     });
   };
 
+  /* -------------------------------------------------------------------------
+    !----------------------- | UPDATE A TOY | -------------------------------
+  ----------------------------------------------------------------------------- */
+
+  const updateToy = (updatedInfo) => {
+    console.log(updatedInfo)
+    
+  };
+
   return (
     <section className="container mx-auto">
       {loading ? (
@@ -111,23 +133,34 @@ const MyToys = () => {
                 No Data Found
               </div>
             ) : (
-              <div className="overflow-x-auto w-full">
-                <table className="table w-full">
-                  <tbody>
-                    {myToys.map((toy) => (
-                      <ToyItems
-                        key={toy._id}
-                        toyInfo={toy}
-                        handelRemoveToy={handelRemoveToy}
-                      ></ToyItems>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+              <>
+                <div className="overflow-x-auto w-full">
+                  <table className="table w-full">
+                    <tbody>
+                      {myToys.map((toy) => (
+                        <ToyItems
+                          key={toy._id}
+                          toyInfo={toy}
+                          handelRemoveToy={handelRemoveToy}
+                          openModal={openModal}
+                        ></ToyItems>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </>
             )}
           </div>
         </div>
       )}
+
+      {/* ------------------------------------------ modal ------------------------------- */}
+      <UpdateModal
+        isModalOpen={isModalOpen}
+        selectedToy={selectedToy}
+        closeModal={closeModal}
+        updateToy={updateToy}
+      ></UpdateModal>
     </section>
   );
 };

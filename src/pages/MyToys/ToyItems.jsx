@@ -2,9 +2,24 @@ import React from "react";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 import { FaInfoCircle, FaRegEdit, FaTrashAlt } from "react-icons/fa";
+import Swal from "sweetalert2";
 
-const ToyItems = ({ toyInfo, handelRemoveToy }) => {
+const ToyItems = ({ toyInfo, handelRemoveToy, openModal }) => {
   const { _id, name, category, img, rating, price, quantity } = toyInfo;
+  const handelEditBtn = (toyInfo) => {
+    Swal.fire({
+      title: "Want to Update?",
+      icon: "question",
+      showConfirmButton: true,
+      showCancelButton: true,
+      confirmButtonText: "YES",
+      cancelButtonText: "NO",
+    }).then((swalResult) => {
+      if (swalResult.isConfirmed) {
+        openModal(toyInfo);
+      }
+    });
+  };
   return (
     <tr className="flex justify-between">
       {/* ----------------------- IMAGE AND INFORMATION ---------------- */}
@@ -38,7 +53,10 @@ const ToyItems = ({ toyInfo, handelRemoveToy }) => {
         >
           <FaTrashAlt></FaTrashAlt>
         </button>
-        <button className="btn  text-green-600 btn-outline btn-circle text-xl hover:border-0 hover:bg-green-600">
+        <button
+          className="btn  text-green-600 btn-outline btn-circle text-xl hover:border-0 hover:bg-green-600"
+          onClick={() => handelEditBtn(toyInfo)}
+        >
           <FaRegEdit></FaRegEdit>
         </button>
         <button className="btn text-pink-600 btn-outline btn-circle text-xl hover:border-0 hover:bg-pink-600">
