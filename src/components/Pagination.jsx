@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const Pagination = ({ totalPages, setPerPage, setCurrentPage, perPage }) => {
   const options = [10, 15, 20];
   const pages = [];
@@ -5,10 +7,32 @@ const Pagination = ({ totalPages, setPerPage, setCurrentPage, perPage }) => {
     pages.push(i);
   }
 
+  const [pageActive, setPageActive] = useState(0);
+
+  const handelPaginationNavigate = (page) => {
+    setCurrentPage(page);
+    setPageActive(page);
+  };
+
   return (
-    <div className="flex gap-2 w-fit mx-auto items-center my-10">
+    <div className="w-fit mx-auto my-10 space-y-5">
+      <div className="flex gap-2 w-fit mx-auto items-center ">
+        {pages.map((page) => (
+          <button
+            className={`btn btn-sm btn-circle btn-outline text-lg  ${
+              pageActive !== page
+                ? "text-pink-600"
+                : "bg-pink-600 border-0 text-white"
+            }`}
+            key={page}
+            onClick={() => handelPaginationNavigate(page)}
+          >
+            {page + 1}
+          </button>
+        ))}
+      </div>
       <select
-        className="select border-2 border-pink-600 w-[80px] focus:outline-none"
+        className="select border-2 border-pink-600 w-[80px] mx-auto focus:outline-none"
         defaultValue={perPage}
         onChange={() => setPerPage(event.target.value)}
       >
@@ -16,15 +40,6 @@ const Pagination = ({ totalPages, setPerPage, setCurrentPage, perPage }) => {
           <option key={idx}>{option}</option>
         ))}
       </select>
-      {pages.map((page) => (
-        <button
-          className="btn btn-sm btn-circle btn-outline text-pink-600 text-lg hover:bg-pink-600 hover:border-0"
-          key={page}
-          onClick={() => setCurrentPage(page)}
-        >
-          {page + 1}
-        </button>
-      ))}
     </div>
   );
 };
