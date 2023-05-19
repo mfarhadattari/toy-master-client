@@ -15,7 +15,7 @@ const kitCategories = [
   "Coding Kits",
   "Mathematics Kits",
   "Environmental Science Kits",
-  "Geographical Kits"
+  "Geographical Kits",
 ];
 
 const AddToy = () => {
@@ -46,7 +46,7 @@ const AddToy = () => {
       img,
       details,
     };
-    fetch("http://localhost:5000/add-toy", {
+    fetch("https://mfarhad-toy-master.vercel.app/add-toy", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -63,7 +63,13 @@ const AddToy = () => {
           form.reset();
         }
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        Swal.fire({
+          title: "Error!",
+          icon: "error",
+          color: "red",
+        });
+      });
   };
 
   return (
