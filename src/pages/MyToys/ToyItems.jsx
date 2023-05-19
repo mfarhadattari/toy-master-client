@@ -8,7 +8,7 @@ const ToyItems = ({ toyInfo }) => {
   return (
     <tr className="flex justify-between">
       {/* ----------------------- image and information---------------- */}
-      <td className="w-full flex gap-5 items-center">
+      <td className="w-full flex gap-5 items-center  font-style-script">
         <div className="avatar">
           <div className=" w-40 h-40 rounded-md">
             <img src={img} alt="Avatar Tailwind CSS Component" />
