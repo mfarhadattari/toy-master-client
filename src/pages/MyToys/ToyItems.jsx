@@ -3,6 +3,7 @@ import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 import { FaInfoCircle, FaRegEdit, FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const ToyItems = ({ toyInfo, handelRemoveToy, openModal }) => {
   const { _id, name, category, img, rating, price, quantity } = toyInfo;
@@ -59,9 +60,12 @@ const ToyItems = ({ toyInfo, handelRemoveToy, openModal }) => {
         >
           <FaRegEdit></FaRegEdit>
         </button>
-        <button className="btn text-pink-600 btn-outline btn-circle text-xl hover:border-0 hover:bg-pink-600">
+        <Link
+          to={`/toy/${_id}`}
+          className="btn text-pink-600 btn-outline btn-circle text-xl hover:border-0 hover:bg-pink-600"
+        >
           <FaInfoCircle></FaInfoCircle>
-        </button>
+        </Link>
       </div>
     </div>
   );

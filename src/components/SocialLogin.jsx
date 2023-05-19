@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "./../providers/AuthProvides";
 import Swal from "sweetalert2";
 import { FcGoogle } from "react-icons/fc";
@@ -6,6 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 const SocialLogin = () => {
   const { loginUserWithGoogle } = useContext(AuthContext);
+  const [loading , setLoading]= useState(true)
 
   const navigate = useNavigate();
 
@@ -14,7 +15,7 @@ const SocialLogin = () => {
   const redirectFrom = location?.state?.from?.pathname || "/";
 
   /* -----------------------------------
-  ! ------- google login handler-------
+  ! ------- |GOOGLE LOGIN HANDLER| -------
   ----------------------------------------*/
   const handelGoogleLogin = () => {
     loginUserWithGoogle()

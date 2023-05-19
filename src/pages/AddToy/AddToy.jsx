@@ -45,6 +45,7 @@ const AddToy = () => {
       rating,
       img,
       details,
+      sellerAvatar: user.photoURL,
     };
     fetch("https://mfarhad-toy-master.vercel.app/add-toy", {
       method: "POST",

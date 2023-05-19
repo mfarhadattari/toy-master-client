@@ -29,8 +29,14 @@ const routers = createBrowserRouter([
         element: <AllToys></AllToys>,
       },
       {
-        path: "/toy-details/:id",
-        element: <ToyDetails></ToyDetails>,
+        path: "/toy/:id",
+        element: (
+          <RouteProtector>
+            <ToyDetails></ToyDetails>
+          </RouteProtector>
+        ),
+        loader: ({ params }) =>
+          fetch(`https://mfarhad-toy-master.vercel.app/toy-details/${params.id}`),
       },
       {
         path: "/my-toys",
