@@ -2,26 +2,12 @@ import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvides";
 import Swal from "sweetalert2";
 import useSetTitle from "../../hooks/useSetTitle";
-
-const kitCategories = [
-  "Chemistry Kits",
-  "Physics Kits",
-  "Biology Kits",
-  "Astronomy Kits",
-  "Robotics Kits",
-  "Engineering Kits",
-  "Geology Kits",
-  "Microscope Kits",
-  "Electronics Kits",
-  "Coding Kits",
-  "Mathematics Kits",
-  "Environmental Science Kits",
-  "Geographical Kits",
-];
+import { useLoaderData } from "react-router-dom";
 
 const AddToy = () => {
   useSetTitle("Add Toy");
   const { user } = useContext(AuthContext);
+  const categories = useLoaderData();
 
   const handelAddToy = (event) => {
     event.preventDefault();
@@ -120,8 +106,8 @@ const AddToy = () => {
             </div>
             <div className="form-control my-2 w-full">
               <select className="input input-bordered" name="category" required>
-                {kitCategories.map((category, idx) => (
-                  <option key={idx}>{category}</option>
+                {categories.map((category) => (
+                  <option key={category._id}>{category.name}</option>
                 ))}
               </select>
             </div>

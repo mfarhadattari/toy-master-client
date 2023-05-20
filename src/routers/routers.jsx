@@ -54,6 +54,7 @@ const routers = createBrowserRouter([
             <AddToy></AddToy>
           </RouteProtector>
         ),
+        loader: () => fetch("http://localhost:5000/categories"),
       },
       {
         path: "/login",
