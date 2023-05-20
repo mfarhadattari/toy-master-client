@@ -2,7 +2,7 @@ import { Rating } from "@smastrom/react-rating";
 import { FaInfoCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-const ToyCard = ({ toyInfo }) => {
+const ToyTableTow = ({ toyInfo }) => {
   const {
     _id,
     name,
@@ -27,7 +27,6 @@ const ToyCard = ({ toyInfo }) => {
                   sellerAvatar ||
                   `https://cdn-icons-png.flaticon.com/128/3177/3177440.png`
                 }
-                alt="Avatar Tailwind CSS Component"
               />
             </div>
           </div>
@@ -42,7 +41,7 @@ const ToyCard = ({ toyInfo }) => {
         <div className="w-1/2 flex items-center">
           <div className="avatar">
             <div className="w-56 h-56 rounded-md">
-              <img src={img} alt="Avatar Tailwind CSS Component" />
+              <img src={img} />
             </div>
           </div>
         </div>
@@ -71,4 +70,4 @@ const ToyCard = ({ toyInfo }) => {
   );
 };
 
-export default ToyCard;
+export default ToyTableTow;

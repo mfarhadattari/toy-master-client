@@ -2,8 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import TabDisplay from "./TabDisplay";
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const CategoriesToys = () => {
+  const [loading, setLoading] = useState(true);
   /* ----------------------------------------------------------------
         ! --------------------- categories data ------------------ 
     ---------------------------------------------------------------*/
@@ -13,6 +16,7 @@ const CategoriesToys = () => {
       .then((res) => res.json())
       .then((data) => {
         setCategories(data);
+        setLoading(false);
       });
   }, []);
 
@@ -23,18 +27,26 @@ const CategoriesToys = () => {
           | Toys Category |
         </h1>
       </div>
-      <Tabs>
-        <TabList className="w-fit mx-auto">
+      {loading ? (
+        <Skeleton count={3} />
+      ) : (
+        <Tabs>
+          <TabList className="flex justify-center items-center flex-wrap">
+            {categories.map((category) => (
+              <Tab key={category._id} selectedClassName="text-pink-600">
+                <button className="hover:text-pink-600 font-semibold">
+                  {category.name}
+                </button>
+              </Tab>
+            ))}
+          </TabList>
           {categories.map((category) => (
-            <Tab key={category._id}>{category.name}</Tab>
+            <TabPanel key={category._id}>
+              <TabDisplay category={category.name}></TabDisplay>
+            </TabPanel>
           ))}
-        </TabList>
-        {categories.map((category) => (
-          <TabPanel key={category._id}>
-            <TabDisplay category={category.name}></TabDisplay>
-          </TabPanel>
-        ))}
-      </Tabs>
+        </Tabs>
+      )}
     </section>
   );
 };

@@ -8,7 +8,7 @@ import UpdateModal from "../../components/UpdateModal";
 import useSetTitle from "../../hooks/useSetTitle";
 
 const MyToys = () => {
-  useSetTitle('My Toys')
+  useSetTitle("My Toys");
   const { user } = useContext(AuthContext);
   const [myToys, setMyToys] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -145,7 +145,6 @@ const MyToys = () => {
                       user.photoURL ||
                       `https://cdn-icons-png.flaticon.com/128/3177/3177440.png`
                     }
-                    alt="Avatar Tailwind CSS Component"
                   />
                 </div>
               </div>

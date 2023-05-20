@@ -2,11 +2,11 @@ import { useLoaderData } from "react-router-dom";
 import Pagination from "../../components/Pagination";
 import { useEffect, useState } from "react";
 import Loader from "../../components/Loader";
-import ToyCard from "./ToyCard";
-import useSetTitle from './../../hooks/useSetTitle';
+import ToyTableTow from "./ToyTableTow";
+import useSetTitle from "./../../hooks/useSetTitle";
 
 const AllToys = () => {
-  useSetTitle('All Toys')
+  useSetTitle("All Toys");
   const { totalToys } = useLoaderData();
   const [perPage, setPerPage] = useState(20);
   const [currentPage, setCurrentPage] = useState(0);
@@ -39,7 +39,10 @@ const AllToys = () => {
                     <table className="w-full p-5">
                       <tbody>
                         {toys.map((toy) => (
-                          <ToyCard key={toy._id} toyInfo={toy}></ToyCard>
+                          <ToyTableTow
+                            key={toy._id}
+                            toyInfo={toy}
+                          ></ToyTableTow>
                         ))}
                       </tbody>
                     </table>

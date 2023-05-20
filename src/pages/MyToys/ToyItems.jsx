@@ -27,7 +27,7 @@ const ToyItems = ({ toyInfo, handelRemoveToy, openModal }) => {
       <td className="w-full flex flex-col md:flex-row gap-5 items-center">
         <div className="avatar">
           <div className=" w-40 h-40 rounded-md">
-            <img src={img} alt="Avatar Tailwind CSS Component" />
+            <img src={img} />
           </div>
         </div>
         <div className="text-start">
