@@ -1,7 +1,9 @@
+import Banner from "./Banner";
+
 const Home = () => {
   return (
-    <div>
-      <h1>THIS IS HOME</h1>
+    <div className="container mx-auto">
+      <Banner></Banner>
     </div>
   );
 };

@@ -11,9 +11,9 @@ const Error = () => {
         <h3 className="text-3xl">Page No Found</h3>
         <button
           className="text-pink-600 my-5 text-xl btn btn-outline"
-          onClick={() => navigate(-1)}
+          onClick={() => navigate('/')}
         >
-          Go Back
+          Go Home
         </button>
       </div>
     </div>
