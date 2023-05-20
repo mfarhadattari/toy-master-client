@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvides";
 import Swal from "sweetalert2";
+import useSetTitle from "../../hooks/useSetTitle";
 
 const kitCategories = [
   "Chemistry Kits",
@@ -19,6 +20,7 @@ const kitCategories = [
 ];
 
 const AddToy = () => {
+  useSetTitle("Add Toy");
   const { user } = useContext(AuthContext);
 
   const handelAddToy = (event) => {

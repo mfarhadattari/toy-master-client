@@ -1,4 +1,6 @@
+import useSetTitle from "./../../hooks/useSetTitle";
 const Blogs = () => {
+  useSetTitle("Blogs");
   return (
     <div>
       <h1>THIS IS BLOGS</h1>

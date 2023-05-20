@@ -11,6 +11,7 @@ const NavigationBar = () => {
     <>
       <NavigationLink to="/">Home</NavigationLink>
       <NavigationLink to="/all-toys">All Toys</NavigationLink>
+      <NavigationLink to="/blogs">Blogs</NavigationLink>
 
       {user ? (
         <>

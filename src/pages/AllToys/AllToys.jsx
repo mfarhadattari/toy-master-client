@@ -3,8 +3,10 @@ import Pagination from "../../components/Pagination";
 import { useEffect, useState } from "react";
 import Loader from "../../components/Loader";
 import ToyCard from "./ToyCard";
+import useSetTitle from './../../hooks/useSetTitle';
 
 const AllToys = () => {
+  useSetTitle('All Toys')
   const { totalToys } = useLoaderData();
   const [perPage, setPerPage] = useState(20);
   const [currentPage, setCurrentPage] = useState(0);

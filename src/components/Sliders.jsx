@@ -24,7 +24,7 @@ const Sliders = ({ banners }) => {
             <h1 className="font-source-serif-pro font-bold italic  text-2xl md:text-4xl lg:text-6xl text-white">
               Make Your Dreams
             </h1>
-            <p className="text-white md:text-xl text-justify mt-3">
+            <p className="text-white md:text-xl  mt-3">
               Ignite Curiosity, Inspire Minds. Explore our engaging collection
               of interactive toys that make learning a fun and rewarding
               experience for children of all ages!

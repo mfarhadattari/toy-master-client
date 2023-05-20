@@ -1,9 +1,10 @@
 import { Rating } from "@smastrom/react-rating";
 import { useState } from "react";
-import { FaEnvelope } from "react-icons/fa";
 import { useLoaderData } from "react-router-dom";
+import useSetTitle from "../../hooks/useSetTitle";
 
 const ToyDetails = () => {
+  useSetTitle("Toys Details");
   const {
     _id,
     seller,
@@ -69,19 +70,19 @@ const ToyDetails = () => {
         </div>
       </div>
 
-      <div className="p-5 text-justify md:w-3/4 mx-auto my-10 space-y-5">
+      <div className="p-5 md:w-3/4 mx-auto my-10 space-y-5">
         <h1 className=" font-bold font-source-serif-pro italic text-5xl border-b-4 border-pink-600 p-5 ">
           Description
         </h1>
-        <p className="text-2xl font-light">
-          {seeMore ? details : details.slice(0, 400)}...{" "}
+        <div className="text-2xl font-light">
+          <p className="inline w-fit text-gray-700">{seeMore ? details : details.slice(0, 400)}... </p>
           <button
-            className="underline text-pink-600"
+            className="btn btn-link text-pink-500 hover:text-pink-600"
             onClick={() => setSeeMore(!seeMore)}
           >
             {seeMore ? "See Less" : "See More"}
           </button>
-        </p>
+        </div>
       </div>
     </section>
   );

@@ -5,8 +5,10 @@ import Swal from "sweetalert2";
 import ToyItems from "./toyItems";
 import { FaEnvelope } from "react-icons/fa";
 import UpdateModal from "../../components/UpdateModal";
+import useSetTitle from "../../hooks/useSetTitle";
 
 const MyToys = () => {
+  useSetTitle('My Toys')
   const { user } = useContext(AuthContext);
   const [myToys, setMyToys] = useState([]);
   const [loading, setLoading] = useState(true);

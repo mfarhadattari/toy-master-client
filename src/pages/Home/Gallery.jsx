@@ -34,7 +34,7 @@ const Gallery = () => {
   return (
     <section className="container mx-auto my-20 p-5">
       <div className="divider w-3/4 mx-auto after:bg-pink-600 before:bg-pink-600 my-10">
-        <h1 className="text-7xl text-center font-source-serif-pro font-bold italic">| Photo Gallery |</h1>
+        <h1 className="text-7xl text-center font-source-serif-pro font-bold italic">| Gallery |</h1>
       </div>
       <div className="w-full mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 space-y-5 justify-center items-center gap-5 mt-20">
         {galleryImages.map((img, idx) => (

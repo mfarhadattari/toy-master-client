@@ -3,8 +3,10 @@ import SocialLogin from "../../components/SocialLogin";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvides";
 import Swal from "sweetalert2";
+import useSetTitle from "../../hooks/useSetTitle";
 
 const Register = () => {
+  useSetTitle("Registration");
   const { createUser, logoutUser, setUserAvatar, setUserName } =
     useContext(AuthContext);
 

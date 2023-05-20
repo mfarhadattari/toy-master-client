@@ -1,6 +1,8 @@
 import { TfiFaceSad } from "react-icons/tfi";
 import { useNavigate } from "react-router-dom";
+import useSetTitle from "./../../hooks/useSetTitle";
 const Error = () => {
+  useSetTitle("Error");
   const navigate = useNavigate();
   return (
     <div className="flex items-center justify-center h-screen font-source-serif-pro">
@@ -11,7 +13,7 @@ const Error = () => {
         <h3 className="text-3xl">Page No Found</h3>
         <button
           className="text-pink-600 my-5 text-xl btn btn-outline"
-          onClick={() => navigate('/')}
+          onClick={() => navigate("/")}
         >
           Go Home
         </button>
