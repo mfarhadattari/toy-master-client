@@ -5,7 +5,7 @@ const Footer = () => {
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-center md:justify-between p-5 md:p-10 text-sm">
         <div className="w-fit mx-auto text-center md:col-span-2 lg:col-span-1">
           <img src={icon} className="w-20 h-20 mx-auto" alt="" />
-          <h1 className="footer-title text-black opacity-100 text-xl font-style-script">
+          <h1 className="footer-title text-black opacity-100 text-xl font-source-serif-pro italic">
             TOY MASTER
           </h1>
           <p>

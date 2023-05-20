@@ -9,8 +9,8 @@ const styles = {
     borderRadius: "10px",
     scrollbarColor: "pink",
     padding: "0px",
-    margin: 'auto auto',
-    top: '120px'
+    margin: "auto auto",
+    top: "120px",
   },
 };
 
@@ -40,7 +40,7 @@ const UpdateModal = ({ isModalOpen, closeModal, selectedToy, updateToy }) => {
     >
       {selectedToy && (
         <div className="w-full mx-auto mt-10 ">
-          <h1 className="text-center mt-10 font-bold text-4xl font-style-script">
+          <h1 className="text-center mt-10 font-bold text-4xl  font-source-serif-pro italic">
             Update Toy
           </h1>
           <form className="card-body" onSubmit={handelUpdateToy}>

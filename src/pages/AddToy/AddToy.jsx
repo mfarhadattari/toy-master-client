@@ -47,7 +47,7 @@ const AddToy = () => {
       details,
       sellerAvatar: user.photoURL,
     };
-    fetch("https://mfarhad-toy-master.vercel.app/add-toy", {
+    fetch("http://localhost:5000/add-toy", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -76,7 +76,7 @@ const AddToy = () => {
   return (
     <section className="container mx-auto my-10 p-5 lg:p-0">
       <div className="border-2 border-pink-600 rounded-xl shadow-xl w-full md:w-3/4 mx-auto">
-        <h1 className="text-center mt-10 font-bold text-4xl font-style-script">
+        <h1 className="text-center mt-10 font-bold text-4xl font-source-serif-pro italic">
           ADD TOY
         </h1>
         <form className="card-body" onSubmit={handelAddToy}>

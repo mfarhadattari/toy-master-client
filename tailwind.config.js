@@ -4,7 +4,7 @@ export default {
   theme: {
     fontFamily: {
       "space-grotesk": ["Space Grotesk", "sans-serif"],
-      "style-script": ["Style Script", "cursive"],
+      "source-serif-pro": ["Source Serif Pro", "serif"],
     },
     extend: {},
   },

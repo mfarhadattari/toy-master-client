@@ -14,7 +14,7 @@ const AllToys = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`https://mfarhad-toy-master.vercel.app/toys?page=${currentPage}&limit=${perPage}`)
+    fetch(`http://localhost:5000/toys?page=${currentPage}&limit=${perPage}`)
       .then((res) => res.json())
       .then((data) => {
         setToys(data);

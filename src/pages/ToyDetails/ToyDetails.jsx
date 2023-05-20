@@ -23,7 +23,7 @@ const ToyDetails = () => {
   return (
     <section className="container mx-auto my-10">
       {/* seller information */}
-      <div className="flex justify-center md:justify-end mr-10" title="Seller">
+      <div className="flex justify-center md:justify-end mr-10">
         <div className="flex items-center gap-5">
           <div className="avatar">
             <div className=" w-14 h-14 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
@@ -35,11 +35,9 @@ const ToyDetails = () => {
               />
             </div>
           </div>
-          <div className="text-start text-xl font-style-script">
+          <div className="text-start text-xl font-source-serif-pro italic ">
             <h1 className="font-bold">{seller}</h1>
-            <h1 className="flex gap-2 items-center">
-              <FaEnvelope></FaEnvelope> {email}
-            </h1>
+            <h3>Seller</h3>
           </div>
         </div>
       </div>
@@ -72,7 +70,7 @@ const ToyDetails = () => {
       </div>
 
       <div className="p-5 text-justify md:w-3/4 mx-auto my-10 space-y-5">
-        <h1 className=" font-bold font-style-script text-5xl border-b-4 border-pink-600 p-5 ">
+        <h1 className=" font-bold font-source-serif-pro italic text-5xl border-b-4 border-pink-600 p-5 ">
           Description
         </h1>
         <p className="text-2xl font-light">

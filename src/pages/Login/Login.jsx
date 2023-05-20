@@ -25,7 +25,7 @@ const Login = () => {
 
     loginUser(email, password)
       .then((authResult) => {
-        fetch("https://mfarhad-toy-master.vercel.app/generate-jwt-token", {
+        fetch("http://localhost:5000/generate-jwt-token", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -56,7 +56,7 @@ const Login = () => {
   return (
     <section className="container mx-auto my-10 p-5 lg:p-0">
       <div className="border-2 border-pink-600 rounded-xl shadow-xl w-full md:w-3/4 xl:w-2/5 mx-auto">
-        <h1 className="text-center mt-10 font-bold text-4xl font-style-script">
+        <h1 className="text-center mt-10 font-bold text-4xl font-source-serif-pro italic ">
           Please Login
         </h1>
         <form className="card-body" onSubmit={handelLogin}>
@@ -92,7 +92,7 @@ const Login = () => {
             Create Account
           </Link>
         </p>
-        <div className="divider w-3/4 mx-auto font-style-script font-semibold">
+        <div className="divider w-3/4 mx-auto font-source-serif-pro italic font-semibold">
           OR
         </div>
         <div>

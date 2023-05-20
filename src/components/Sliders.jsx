@@ -19,9 +19,9 @@ const Sliders = ({ banners }) => {
           src={banners[currentBanner]}
           className="w-full h-[500px] rounded-lg"
         />
-        <div className="w-full h-full absolute top-0  rounded-lg bg-gradient-to-r from-[#151515] to-[#15151504]">
+        <div className="w-full h-full absolute top-0 rounded-lg bg-gradient-to-r from-[#151515] to-[#15151504]">
           <div className="absolute top-1/3 left-16 md:left-28 lg:mt-10 w-3/4 md:w-1/2 p-5">
-            <h1 className="font-style-script text-2xl md:text-4xl lg:text-6xl text-white">
+            <h1 className="font-source-serif-pro font-bold italic  text-2xl md:text-4xl lg:text-6xl text-white">
               Make Your Dreams
             </h1>
             <p className="text-white md:text-xl text-justify mt-3">

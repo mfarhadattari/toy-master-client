@@ -27,7 +27,7 @@ const MyToys = () => {
         ! --------------------- | LOAD MY TOYS | ----------------------
     --------------------------------------------------------------------- */
   useEffect(() => {
-    fetch(`https://mfarhad-toy-master.vercel.app/my-toys?email=${user.email}`, {
+    fetch(`http://localhost:5000/my-toys?email=${user.email}`, {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("toy-master-token")}`,
@@ -65,7 +65,7 @@ const MyToys = () => {
       cancelButtonText: "NO",
     }).then((swalResult) => {
       if (swalResult.isConfirmed) {
-        fetch(`https://mfarhad-toy-master.vercel.app/remove-toy/${id}`, {
+        fetch(`http://localhost:5000/remove-toy/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -95,7 +95,7 @@ const MyToys = () => {
   ----------------------------------------------------------------------------- */
 
   const updateToy = (id, updatedInfo) => {
-    fetch(`https://mfarhad-toy-master.vercel.app/update-toy/${id}`, {
+    fetch(`http://localhost:5000/update-toy/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -147,7 +147,7 @@ const MyToys = () => {
                   />
                 </div>
               </div>
-              <div className="text-start  font-style-script">
+              <div className="text-start  font-source-serif-pro">
                 <h1 className="font-bold">{user.displayName}</h1>
                 <h1 className="flex gap-2 items-center">
                   <FaEnvelope></FaEnvelope> {user.email}
@@ -160,7 +160,7 @@ const MyToys = () => {
           <div className="w-full">
             <div className="divider w-3/4 mx-auto my-10 before:bg-pink-600 after:bg-pink-600"></div>
             {myToys.length === 0 ? (
-              <div className="my-10 text-3xl font-style-script">
+              <div className="my-10 text-3xl font-source-serif-pro ">
                 No Data Found
               </div>
             ) : (

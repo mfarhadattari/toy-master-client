@@ -50,7 +50,7 @@ const NavigationBar = () => {
             {navList}
           </ul>
         </div>
-        <Link className="flex items-center gap-2 font-style-script text-2xl lg:text-4xl  font-bold ">
+        <Link className="flex items-end gap-2 font-source-serif-pro italic text-2xl lg:text-5xl  font-bold ">
           <img src={icon} className="w-8 lg:w-14" alt="TOY MASTER" />{" "}
           <span>TOY MASTER</span>
         </Link>
