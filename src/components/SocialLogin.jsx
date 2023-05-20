@@ -6,7 +6,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 const SocialLogin = () => {
   const { loginUserWithGoogle } = useContext(AuthContext);
-  const [loading , setLoading]= useState(true)
 
   const navigate = useNavigate();
 
@@ -20,7 +19,7 @@ const SocialLogin = () => {
   const handelGoogleLogin = () => {
     loginUserWithGoogle()
       .then((loginResult) => {
-        fetch("https://mfarhad-toy-master.vercel.app/generate-jwt-token", {
+        fetch("http://localhost:5000/generate-jwt-token", {
           method: "POST",
           headers: {
             "content-type": "application/json",
