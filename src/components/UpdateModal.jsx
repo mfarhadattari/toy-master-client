@@ -3,13 +3,14 @@ import Modal from "react-modal";
 
 const styles = {
   content: {
-    height: "70%",
+    height: "450px",
     width: "fit-content",
-    margin: "100px auto",
     border: "5px solid #DB2777",
     borderRadius: "10px",
     scrollbarColor: "pink",
     padding: "0px",
+    margin: 'auto auto',
+    top: '120px'
   },
 };
 
@@ -38,7 +39,7 @@ const UpdateModal = ({ isModalOpen, closeModal, selectedToy, updateToy }) => {
       style={styles}
     >
       {selectedToy && (
-        <div className="w-full mx-auto">
+        <div className="w-full mx-auto mt-10 ">
           <h1 className="text-center mt-10 font-bold text-4xl font-style-script">
             Update Toy
           </h1>

@@ -22,9 +22,9 @@ const ToyItems = ({ toyInfo, handelRemoveToy, openModal }) => {
     });
   };
   return (
-    <div className="w-full border-2 border-pink-600 rounded-lg p-5 flex flex-col md:flex-row gap-5">
+    <tr className="w-full  rounded-lg p-5 flex flex-col md:flex-row gap-5  shadow-md">
       {/* ----------------------- IMAGE AND INFORMATION ---------------- */}
-      <div className="w-full flex flex-col md:flex-row gap-5 items-center">
+      <td className="w-full flex flex-col md:flex-row gap-5 items-center">
         <div className="avatar">
           <div className=" w-40 h-40 rounded-md">
             <img src={img} alt="Avatar Tailwind CSS Component" />
@@ -44,10 +44,10 @@ const ToyItems = ({ toyInfo, handelRemoveToy, openModal }) => {
             </div>
           </div>
         </div>
-      </div>
+      </td>
 
       {/* ------------------- | Action Button Here | -------------------- */}
-      <div className="w-fit mx-auto gap-5 flex md:flex-col">
+      <td className="w-fit mx-auto gap-5 flex md:flex-col">
         <button
           className="btn text-red-600 btn-outline btn-circle text-xl hover:border-0 hover:bg-red-600 "
           onClick={() => handelRemoveToy(_id)}
@@ -66,8 +66,8 @@ const ToyItems = ({ toyInfo, handelRemoveToy, openModal }) => {
         >
           <FaInfoCircle></FaInfoCircle>
         </Link>
-      </div>
-    </div>
+      </td>
+    </tr>
   );
 };
 

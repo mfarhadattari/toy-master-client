@@ -27,7 +27,7 @@ const MyToys = () => {
         ! --------------------- | LOAD MY TOYS | ----------------------
     --------------------------------------------------------------------- */
   useEffect(() => {
-    fetch(`https://mfarhad-toy-master.vercel.app/my-toys?email=${user.email}`, {
+    fetch(`http://localhost:5000/my-toys?email=${user.email}`, {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("toy-master-token")}`,
@@ -65,7 +65,7 @@ const MyToys = () => {
       cancelButtonText: "NO",
     }).then((swalResult) => {
       if (swalResult.isConfirmed) {
-        fetch(`https://mfarhad-toy-master.vercel.app/remove-toy/${id}`, {
+        fetch(`http://localhost:5000/remove-toy/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -95,7 +95,7 @@ const MyToys = () => {
   ----------------------------------------------------------------------------- */
 
   const updateToy = (id, updatedInfo) => {
-    fetch(`https://mfarhad-toy-master.vercel.app/update-toy/${id}`, {
+    fetch(`http://localhost:5000/update-toy/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -132,7 +132,7 @@ const MyToys = () => {
       {loading ? (
         <Loader></Loader>
       ) : (
-        <div className="lg:w-3/4 mx-auto text-center text-lg my-10 space-y-5 border rounded-lg py-5">
+        <div className="lg:w-3/4 mx-auto text-center text-lg my-10 space-y-5 shadow-xl rounded-xl py-5">
           {/* -------------------- | USER INFORMATION | --------------------- */}
           <div className="flex justify-center md:justify-end mr-10">
             <div className="flex items-center gap-5">
@@ -158,16 +158,16 @@ const MyToys = () => {
 
           {/* --------------------------- | MY TOY INFORMATION |------------------- */}
           <div className="w-full">
-            <div className="divider w-3/4 mx-auto my-10"></div>
+            <div className="divider w-3/4 mx-auto my-10 before:bg-pink-600 after:bg-pink-600"></div>
             {myToys.length === 0 ? (
               <div className="my-10 text-3xl font-style-script">
                 No Data Found
               </div>
             ) : (
               <>
-                <div className="w-full">
-                  <div className="w-full p-5">
-                    <div className="space-y-5">
+                <div className="w-full p-5">
+                  <table className="w-full p-5">
+                    <tbody>
                       {myToys.map((toy) => (
                         <ToyItems
                           key={toy._id}
@@ -176,8 +176,8 @@ const MyToys = () => {
                           openModal={openModal}
                         ></ToyItems>
                       ))}
-                    </div>
-                  </div>
+                    </tbody>
+                  </table>
                 </div>
               </>
             )}

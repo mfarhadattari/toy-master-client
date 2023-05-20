@@ -27,7 +27,7 @@ const routers = createBrowserRouter([
       {
         path: "/all-toys",
         element: <AllToys></AllToys>,
-        loader: () => fetch("https://mfarhad-toy-master.vercel.app/total-toys"),
+        loader: () => fetch("http://localhost:5000/total-toys"),
       },
       {
         path: "/toy/:id",
@@ -37,7 +37,7 @@ const routers = createBrowserRouter([
           </RouteProtector>
         ),
         loader: ({ params }) =>
-          fetch(`https://mfarhad-toy-master.vercel.app/toy-details/${params.id}`),
+          fetch(`http://localhost:5000/toy-details/${params.id}`),
       },
       {
         path: "/my-toys",
