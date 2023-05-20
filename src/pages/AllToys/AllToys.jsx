@@ -2,6 +2,7 @@ import { useLoaderData } from "react-router-dom";
 import Pagination from "../../components/Pagination";
 import { useEffect, useState } from "react";
 import Loader from "../../components/Loader";
+import ToyCard from "./ToyCard";
 
 const AllToys = () => {
   const { totalToys } = useLoaderData();
@@ -13,9 +14,7 @@ const AllToys = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(
-      `http://localhost:5000/toys?page=${currentPage}&limit=${perPage}`
-    )
+    fetch(`https://mfarhad-toy-master.vercel.app/toys?page=${currentPage}&limit=${perPage}`)
       .then((res) => res.json())
       .then((data) => {
         setToys(data);
@@ -30,7 +29,22 @@ const AllToys = () => {
           <Loader></Loader>
         ) : (
           <div>
-            <h1 className="text-center text-3xl my-10">{toys.length}</h1>
+            {toys.length > 0 && (
+              <div className="lg:w-3/4 mx-auto text-center text-lg my-10 space-y-5 shadow-xl rounded-xl py-5">
+                {/* --------------------------- | TOY INFORMATION |------------------- */}
+                <div className="w-full">
+                  <div className="w-full p-5">
+                    <table className="w-full p-5">
+                      <tbody>
+                        {toys.map((toy) => (
+                          <ToyCard key={toy._id} toyInfo={toy}></ToyCard>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         )}
       </div>

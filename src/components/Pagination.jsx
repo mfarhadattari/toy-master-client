@@ -15,8 +15,9 @@ const Pagination = ({ totalPages, setPerPage, setCurrentPage, perPage }) => {
   };
 
   return (
-    <div className="w-fit mx-auto my-10 space-y-5">
-      <div className="flex gap-2 w-fit mx-auto items-center ">
+    <div className="w-full flex flex-wrap items-center gap-5 mx-auto my-10 justify-between p-5">
+      <div className="flex flex-wrap gap-2 w-fit items-center">
+        <label className="text-xl font-light">Pages:</label>
         {pages.map((page) => (
           <button
             className={`btn btn-sm btn-circle btn-outline text-lg  ${
@@ -31,15 +32,18 @@ const Pagination = ({ totalPages, setPerPage, setCurrentPage, perPage }) => {
           </button>
         ))}
       </div>
-      <select
-        className="select border-2 border-pink-600 w-[80px] mx-auto focus:outline-none"
-        defaultValue={perPage}
-        onChange={() => setPerPage(event.target.value)}
-      >
-        {options.map((option, idx) => (
-          <option key={idx}>{option}</option>
-        ))}
-      </select>
+      <div className="flex gap-2 items-center w-fit">
+        <label className="text-xl font-light">Item:</label>
+        <select
+          className="select text-pink-600 border-pink-600  w-[80px] mx-auto focus:outline-none"
+          defaultValue={perPage}
+          onChange={() => setPerPage(event.target.value)}
+        >
+          {options.map((option, idx) => (
+            <option key={idx}>{option}</option>
+          ))}
+        </select>
+      </div>
     </div>
   );
 };
