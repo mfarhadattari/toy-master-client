@@ -59,7 +59,7 @@ const ToyTableTow = ({ toyInfo }) => {
             </div>
             <Link
               to={`/toy/${_id}`}
-              className="btn flex gap-2 items-center w-fit bg-pink-600 text-xl border-0 hover:bg-white hover:outline outline-1 hover:text-pink-600"
+              className="btn flex gap-2 items-center w-fit bg-pink-600 text-base border-0 hover:bg-white hover:outline outline-1 hover:text-pink-600"
             >
               <FaInfoCircle></FaInfoCircle> View Details
             </Link>
