@@ -6,14 +6,17 @@ import ToyItems from "./toyItems";
 import { FaEnvelope } from "react-icons/fa";
 import UpdateModal from "../../components/UpdateModal";
 import useSetTitle from "../../hooks/useSetTitle";
+import { useNavigate } from "react-router-dom";
 
 const MyToys = () => {
   useSetTitle("My Toys");
-  const { user } = useContext(AuthContext);
+  const { user, logoutUser } = useContext(AuthContext);
   const [myToys, setMyToys] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedToy, setSelectedToy] = useState(null);
+
+  const navigate = useNavigate();
 
   const openModal = (toy) => {
     setSelectedToy(toy);
@@ -29,7 +32,7 @@ const MyToys = () => {
         ! --------------------- | LOAD MY TOYS | ----------------------
     --------------------------------------------------------------------- */
   useEffect(() => {
-    fetch(`http://localhost:5000/my-toys?email=${user.email}`, {
+    fetch(`https://mfarhad-toy-master.vercel.app/my-toys?email=${user.email}`, {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("toy-master-token")}`,
@@ -42,15 +45,17 @@ const MyToys = () => {
             title: "Error!",
             icon: "error",
             color: "red",
-            text: `${data.message}`,
+            text: `${data.message} Please Login.`,
+          }).then(() => {
+            navigate("/login");
+            logoutUser();
           });
-          setMyToys([]);
         } else {
           setMyToys(data);
         }
         setLoading(false);
       });
-  }, [user.email]);
+  }, [user.email ,navigate , logoutUser]);
 
   /* -------------------------------------------------------------------------
     !----------------------- | REMOVE A TOY | -------------------------------
@@ -67,7 +72,7 @@ const MyToys = () => {
       cancelButtonText: "NO",
     }).then((swalResult) => {
       if (swalResult.isConfirmed) {
-        fetch(`http://localhost:5000/remove-toy/${id}`, {
+        fetch(`https://mfarhad-toy-master.vercel.app/remove-toy/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -97,7 +102,7 @@ const MyToys = () => {
   ----------------------------------------------------------------------------- */
 
   const updateToy = (id, updatedInfo) => {
-    fetch(`http://localhost:5000/update-toy/${id}`, {
+    fetch(`https://mfarhad-toy-master.vercel.app/update-toy/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

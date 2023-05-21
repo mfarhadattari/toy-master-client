@@ -1,7 +1,6 @@
 import { useState } from "react";
 
-const Pagination = ({ totalPages, setPerPage, setCurrentPage, perPage }) => {
-  const options = [10, 15, 20];
+const Pagination = ({ totalPages, setPerPage, setCurrentPage, perPage , options }) => {
   const pages = [];
   for (let i = 0; i < totalPages; i++) {
     pages.push(i);

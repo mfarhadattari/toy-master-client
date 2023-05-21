@@ -13,10 +13,11 @@ const AllToys = () => {
   const totalPages = Math.ceil(totalToys / perPage);
   const [toys, setToys] = useState([]);
   const [loading, setLoading] = useState(true);
+  const options = [10, 15, 20];
 
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:5000/toys?page=${currentPage}&limit=${perPage}`)
+    fetch(`https://mfarhad-toy-master.vercel.app/toys?page=${currentPage}&limit=${perPage}`)
       .then((res) => res.json())
       .then((data) => {
         setToys(data);
@@ -58,6 +59,7 @@ const AllToys = () => {
         setPerPage={setPerPage}
         totalPages={totalPages}
         setCurrentPage={setCurrentPage}
+        options={options}
       ></Pagination>
     </section>
   );
