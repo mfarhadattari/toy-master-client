@@ -1,4 +1,11 @@
 import icon from "/icon.png";
+import {
+  FaFacebook,
+  FaLinkedin,
+  FaInstagramSquare,
+  FaTwitter,
+} from "react-icons/fa";
+
 const Footer = () => {
   return (
     <footer className="bg-base-200 font-semibold">
@@ -30,6 +37,20 @@ const Footer = () => {
         </div>
       </div>
       <div>
+        <div className="flex justify-center items-center gap-5">
+          <a href="#tweeter" className="btn btn-circle btn-sm text-xl bg-pink-600 border-0 text-white">
+            <FaTwitter></FaTwitter>
+          </a>
+          <a href="#facebook" className="btn btn-circle btn-sm text-xl bg-pink-600 border-0 text-white">
+            <FaFacebook></FaFacebook>
+          </a>
+          <a href="#instagram" className="btn btn-circle btn-sm text-xl bg-pink-600 border-0 text-white">
+            <FaInstagramSquare></FaInstagramSquare>
+          </a>
+          <a href="#linkedin" className="btn btn-circle btn-sm text-xl bg-pink-600 border-0 text-white">
+            <FaLinkedin></FaLinkedin>
+          </a>
+        </div>
         <p className="text-center text-sm my-5">
           &copy; TOY MASTER | All Right Reserved
         </p>

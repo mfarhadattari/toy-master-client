@@ -153,7 +153,7 @@ const MyToys = () => {
       ) : (
         <div className="lg:w-3/4 mx-auto text-center text-lg my-10 space-y-5 shadow-xl rounded-xl p-5">
           {/* -------------------- | USER INFORMATION AND FILTER | --------------------- */}
-          <div className="flex justify-between items-center">
+          <div className="flex flex-col md:flex-row justify-between gap-10 items-center">
             <div className="flex w-full items-center gap-5">
               <div className="avatar">
                 <div className=" w-14 h-14 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
@@ -172,7 +172,7 @@ const MyToys = () => {
                 </h1>
               </div>
             </div>
-            <div className="w-full flex justify-end">
+            <div className="w-full flex justify-center md:justify-end ">
               <SortingBar sortBy={sortBy} setSortBy={setSortBy}></SortingBar>
             </div>
           </div>
