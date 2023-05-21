@@ -34,7 +34,7 @@ const Gallery = () => {
   return (
     <section className="container mx-auto my-20 p-5">
       <div className="divider w-3/4 mx-auto after:bg-pink-600 before:bg-pink-600 my-10">
-        <h1 className="text-4xl text-center font-source-serif-pro font-bold italic">
+        <h1 className="text-lg md:text-4xl text-center font-source-serif-pro font-bold italic">
           | Gallery |
         </h1>
       </div>
