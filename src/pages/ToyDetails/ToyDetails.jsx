@@ -47,7 +47,7 @@ const ToyDetails = () => {
       <div className="w-3/4 mx-auto mt-20">
         <div className="flex flex-col md:flex-row gap-14 items-start">
           <div className="w-full">
-            <img src={img} className="rounded-lg bg-transparent w-full" />
+            <img src={img} className="rounded-lg bg-transparent w-[400px] h-[400px]" />
           </div>
           <div className="w-full space-y-5">
             <h1 className="font-bold text-2xl md:text-3xl lg:text-4xl">
@@ -57,7 +57,7 @@ const ToyDetails = () => {
               Category: {category}
             </p>
             <div className="text-lg md:text-xl lg:text-2xl space-y-2">
-              <p>Price: ${price}</p>
+              <p>Price: {price} Tk</p>
               <p>Quantity: {quantity} pc</p>
               <div className="flex gap-2 items-center tooltip w-fit">
                 Rating:
@@ -75,13 +75,17 @@ const ToyDetails = () => {
           Description
         </h1>
         <div className="text-2xl font-light">
-          <p className="inline w-fit text-gray-700">{seeMore ? details : details.slice(0, 400)}... </p>
-          <button
-            className="btn btn-link text-pink-500 hover:text-pink-600"
-            onClick={() => setSeeMore(!seeMore)}
-          >
-            {seeMore ? "See Less" : "See More"}
-          </button>
+          <p className="inline w-fit text-gray-700">
+            {seeMore ? details : details.slice(0, 400)}...
+          </p>
+          {details.length > 400 && (
+            <button
+              className="btn btn-link text-pink-500 hover:text-pink-600"
+              onClick={() => setSeeMore(!seeMore)}
+            >
+              {seeMore ? "See Less" : "See More"}
+            </button>
+          )}
         </div>
       </div>
     </section>

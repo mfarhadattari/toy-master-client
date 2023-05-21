@@ -49,7 +49,7 @@ const ToyTableTow = ({ toyInfo }) => {
           <h1 className="font-bold text-xl">{name}</h1>
           <p className="font-semibold">Category: {category}</p>
           <div className="space-y-2">
-            <p>Price: ${price}</p>
+            <p>Price: {price} Tk</p>
             <p>Quantity: {quantity} pc</p>
             <div className="flex gap-2 items-center tooltip w-fit">
               Rating:

@@ -6,38 +6,35 @@ import ToyItems from "./toyItems";
 import { FaEnvelope } from "react-icons/fa";
 import UpdateModal from "../../components/UpdateModal";
 import useSetTitle from "../../hooks/useSetTitle";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import SortingBar from "../../components/SortingBar";
+import Skeleton from "react-loading-skeleton";
 
 const MyToys = () => {
   useSetTitle("My Toys");
   const { user, logoutUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const [myToys, setMyToys] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedToy, setSelectedToy] = useState(null);
-
-  const navigate = useNavigate();
-
-  const openModal = (toy) => {
-    setSelectedToy(toy);
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setSelectedToy(null);
-    setIsModalOpen(false);
-  };
+  const [sortBy, setSortBy] = useState("None");
+  const [sortedLoader, setSortedLoader] = useState(false);
 
   /* ------------------------------------------------------------------
-        ! --------------------- | LOAD MY TOYS | ----------------------
-    --------------------------------------------------------------------- */
+  ! --------------------- | LOAD MY TOYS | ----------------------
+  --------------------------------------------------------------------- */
   useEffect(() => {
-    fetch(`http://localhost:5000/my-toys?email=${user.email}`, {
-      method: "GET",
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("toy-master-token")}`,
-      },
-    })
+    setSortedLoader(true);
+    fetch(
+      `http://localhost:5000/my-toys?email=${user.email}&sortBy=${sortBy}`,
+      {
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("toy-master-token")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.error) {
@@ -47,15 +44,19 @@ const MyToys = () => {
             color: "red",
             text: `${data.message} Please Login.`,
           }).then(() => {
-            navigate("/login");
+            navigate("/login", {
+              replace: true,
+              state: { from: location },
+            });
             logoutUser();
           });
         } else {
           setMyToys(data);
         }
         setLoading(false);
+        setSortedLoader(false);
       });
-  }, [user.email ,navigate , logoutUser]);
+  }, [user.email, navigate, logoutUser, location, sortBy]);
 
   /* -------------------------------------------------------------------------
     !----------------------- | REMOVE A TOY | -------------------------------
@@ -97,9 +98,20 @@ const MyToys = () => {
     });
   };
 
-  /* -------------------------------------------------------------------------
-    !----------------------- | UPDATE A TOY | -------------------------------
-  ----------------------------------------------------------------------------- */
+  /* ------------------------------------------------------------------------
+  !----------------- | UPDATE TOY MODAL STATE AND FUNCTION | --------------------- 
+  ----------------------------------------------------------------------------*/
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedToy, setSelectedToy] = useState(null);
+  const openModal = (toy) => {
+    setSelectedToy(toy);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setSelectedToy(null);
+    setIsModalOpen(false);
+  };
 
   const updateToy = (id, updatedInfo) => {
     fetch(`http://localhost:5000/update-toy/${id}`, {
@@ -139,10 +151,10 @@ const MyToys = () => {
       {loading ? (
         <Loader></Loader>
       ) : (
-        <div className="lg:w-3/4 mx-auto text-center text-lg my-10 space-y-5 shadow-xl rounded-xl py-5">
-          {/* -------------------- | USER INFORMATION | --------------------- */}
-          <div className="flex justify-center md:justify-end mr-10">
-            <div className="flex items-center gap-5">
+        <div className="lg:w-3/4 mx-auto text-center text-lg my-10 space-y-5 shadow-xl rounded-xl p-5">
+          {/* -------------------- | USER INFORMATION AND FILTER | --------------------- */}
+          <div className="flex justify-between items-center">
+            <div className="flex w-full items-center gap-5">
               <div className="avatar">
                 <div className=" w-14 h-14 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                   <img
@@ -160,38 +172,47 @@ const MyToys = () => {
                 </h1>
               </div>
             </div>
+            <div className="w-full flex justify-end">
+              <SortingBar sortBy={sortBy} setSortBy={setSortBy}></SortingBar>
+            </div>
           </div>
 
           {/* --------------------------- | MY TOY INFORMATION |------------------- */}
-          <div className="w-full">
-            <div className="divider w-3/4 mx-auto my-10 before:bg-pink-600 after:bg-pink-600"></div>
-            {myToys.length === 0 ? (
-              <div className="my-10 text-3xl font-source-serif-pro ">
-                No Data Found
-              </div>
-            ) : (
-              <>
-                <div className="w-full p-5">
-                  <table className="w-full p-5">
-                    <tbody>
-                      {myToys.map((toy) => (
-                        <ToyItems
-                          key={toy._id}
-                          toyInfo={toy}
-                          handelRemoveToy={handelRemoveToy}
-                          openModal={openModal}
-                        ></ToyItems>
-                      ))}
-                    </tbody>
-                  </table>
+          {sortedLoader ? (
+            <div className="mt-5">
+              <Skeleton count={10} />
+            </div>
+          ) : (
+            <div className="w-full">
+              <div className="divider w-3/4 mx-auto my-10 before:bg-pink-600 after:bg-pink-600"></div>
+              {myToys.length === 0 ? (
+                <div className="my-10 text-3xl font-source-serif-pro ">
+                  No Data Found
                 </div>
-              </>
-            )}
-          </div>
+              ) : (
+                <>
+                  <div className="w-full p-5">
+                    <table className="w-full p-5">
+                      <tbody>
+                        {myToys.map((toy) => (
+                          <ToyItems
+                            key={toy._id}
+                            toyInfo={toy}
+                            handelRemoveToy={handelRemoveToy}
+                            openModal={openModal}
+                          ></ToyItems>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </>
+              )}
+            </div>
+          )}
         </div>
       )}
 
-      {/* ------------------------------------------ modal ------------------------------- */}
+      {/* ------------------------------------------UPDATE MODAL ------------------------------- */}
       <UpdateModal
         isModalOpen={isModalOpen}
         selectedToy={selectedToy}

@@ -63,14 +63,14 @@ const AllToys = () => {
 
   return (
     <section className="container mx-auto my-10">
-      {/* ----------------------- search bar --------------------- */}
+      {/* ----------------------- SEARCH BAR --------------------- */}
       <div className="w-full mx-auto">
         <SearchBar
           searchByNameKeywordLetter={searchByNameKeywordLetter}
         ></SearchBar>
       </div>
 
-      {/* --------------------- matching result ----------------- */}
+      {/* --------------------- MATCHING RESULT ----------------- */}
       {isMatched && (
         <div className="text-xl text-center w-fit font-semibold font-source-serif-pro mx-auto my-10">
           Matched Result : {matched}

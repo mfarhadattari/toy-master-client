@@ -14,12 +14,12 @@ const SearchBar = ({ searchByNameKeywordLetter }) => {
   };
 
   return (
-    <form className="w-1/2 mx-auto" onSubmit={handelSearch}>
-      <div className="form-control w-full relative text-xl">
+    <form className="w-full md:w-3/4 lg:w-1/2 mx-auto p-5" onSubmit={handelSearch}>
+      <div className="form-control w-full relative ">
         <input
           type="search"
           placeholder="Search toy by name or keyword or letter"
-          className="input input-bordered  w-full h-14 ps-14 text-xl"
+          className="input input-bordered  w-full h-14 ps-14 "
           name="search"
           onChange={handelSearchInput}
         />

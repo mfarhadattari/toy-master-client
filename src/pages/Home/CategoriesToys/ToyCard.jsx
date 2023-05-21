@@ -13,7 +13,7 @@ const ToyCard = ({ toyInfo }) => {
           <h1 className="font-bold text-xl">{name}</h1>
           <p className="font-semibold">Category: {category}</p>
           <div className="flex flex-wrap justify-between items-center my-3">
-            <p>Price: ${price}</p>
+            <p>Price: {price} Tk</p>
             <p>Quantity: {quantity} pc</p>
             <div className="flex gap-2 items-center tooltip w-fit">
               Rating:
