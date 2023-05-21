@@ -28,7 +28,7 @@ const ToyCard = ({ toyInfo }) => {
       {/* ----------------------- view details btn-------------- */}
       <Link
         to={`/toy/${_id}`}
-        className="btn flex gap-2 items-center bg-pink-600 text-xl border-0 hover:bg-white hover:outline outline-1 hover:text-pink-600 w-full absolute bottom-0 rounded-none rounded-b-xl h-14"
+        className="btn flex gap-2 items-center bg-pink-600 border-0 hover:bg-white hover:outline outline-1 hover:text-pink-600 w-full absolute bottom-0 rounded-none rounded-b-xl h-5"
       >
         <FaInfoCircle></FaInfoCircle> View Details
       </Link>
