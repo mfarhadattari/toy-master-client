@@ -14,7 +14,7 @@ const TabDisplay = ({ category }) => {
   const totalPages = Math.ceil(totalToys / perPage);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/category-toys/${category}`)
+    fetch(`https://mfarhad-toy-master.vercel.app/category-toys/${category}`)
       .then((res) => res.json())
       .then((data) => {
         setTotalToys(data.total);
@@ -23,7 +23,7 @@ const TabDisplay = ({ category }) => {
 
   useEffect(() => {
     fetch(
-      `http://localhost:5000/toys-by-category/${category}?page=${currentPage}&limit=${perPage}`
+      `https://mfarhad-toy-master.vercel.app/toys-by-category/${category}?page=${currentPage}&limit=${perPage}`
     )
       .then((res) => res.json())
       .then((data) => {

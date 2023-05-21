@@ -27,7 +27,7 @@ const MyToys = () => {
   useEffect(() => {
     setSortedLoader(true);
     fetch(
-      `http://localhost:5000/my-toys?email=${user.email}&sortBy=${sortBy}`,
+      `https://mfarhad-toy-master.vercel.app/my-toys?email=${user.email}&sortBy=${sortBy}`,
       {
         method: "GET",
         headers: {
@@ -73,7 +73,7 @@ const MyToys = () => {
       cancelButtonText: "NO",
     }).then((swalResult) => {
       if (swalResult.isConfirmed) {
-        fetch(`http://localhost:5000/remove-toy/${id}`, {
+        fetch(`https://mfarhad-toy-master.vercel.app/remove-toy/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -114,7 +114,7 @@ const MyToys = () => {
   };
 
   const updateToy = (id, updatedInfo) => {
-    fetch(`http://localhost:5000/update-toy/${id}`, {
+    fetch(`https://mfarhad-toy-master.vercel.app/update-toy/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

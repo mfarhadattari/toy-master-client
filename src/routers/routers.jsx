@@ -23,12 +23,12 @@ const routers = createBrowserRouter([
       {
         path: "/blogs",
         element: <Blogs></Blogs>,
-        loader: () => fetch("http://localhost:5000/blogs"),
+        loader: () => fetch("https://mfarhad-toy-master.vercel.app/blogs"),
       },
       {
         path: "/all-toys",
         element: <AllToys></AllToys>,
-        loader: () => fetch("http://localhost:5000/total-toys"),
+        loader: () => fetch("https://mfarhad-toy-master.vercel.app/total-toys"),
       },
       {
         path: "/toy/:id",
@@ -38,7 +38,7 @@ const routers = createBrowserRouter([
           </RouteProtector>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/toy-details/${params.id}`),
+          fetch(`https://mfarhad-toy-master.vercel.app/toy-details/${params.id}`),
       },
       {
         path: "/my-toys",
@@ -55,7 +55,7 @@ const routers = createBrowserRouter([
             <AddToy></AddToy>
           </RouteProtector>
         ),
-        loader: () => fetch("http://localhost:5000/categories"),
+        loader: () => fetch("https://mfarhad-toy-master.vercel.app/categories"),
       },
       {
         path: "/login",

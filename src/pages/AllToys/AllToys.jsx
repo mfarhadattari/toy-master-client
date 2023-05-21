@@ -30,7 +30,7 @@ const AllToys = () => {
   ------------------------------------------------------------------- */
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:5000/toys?page=${currentPage}&limit=${perPage}`)
+    fetch(`https://mfarhad-toy-master.vercel.app/toys?page=${currentPage}&limit=${perPage}`)
       .then((res) => res.json())
       .then((data) => {
         setAllToys(data);
@@ -50,7 +50,7 @@ const AllToys = () => {
       setLoading(false);
       setIsMatched(false);
     } else {
-      fetch(`http://localhost:5000/search-toy?search=${name}`)
+      fetch(`https://mfarhad-toy-master.vercel.app/search-toy?search=${name}`)
         .then((res) => res.json())
         .then((data) => {
           setToys(data);

@@ -27,7 +27,7 @@ const Login = () => {
 
     loginUser(email, password)
       .then((authResult) => {
-        fetch("http://localhost:5000/generate-jwt-token", {
+        fetch("https://mfarhad-toy-master.vercel.app/generate-jwt-token", {
           method: "POST",
           headers: {
             "content-type": "application/json",
